@@ -1,38 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap');
+
+*{
+  font-family: 'Kumbh Sans', sans-serif;
+
+  
+}
 .App {
   text-align: center;
 }
+.navbar{
+  
+  background-color: white;
+}
+#user-image:hover{
+  border-radius: 100%;
+  border: 2px solid orange;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+}
+.active{
+  color: orange !important;
+  font-weight: 700;
+  border-bottom: 2px solid orange;
+}
+.nav-item .nav-link:hover{
+  color:orange !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.product-card{
+  height: 300px;
+  background-color: white;
+  padding: 10px;
   display: flex;
+  border: 1px solid rgb(207, 206, 206);
   flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.product-img{
+  height: 50%;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.product-img img{
+  height: 100%;
+  padding: 10px;
+  max-width: 100%;
+}
+.product-card:hover,.img-container:hover{
+  transform: scale(1.2);
+  transition: 1s;
+}
+.img-container{
+  display: flex;
+  padding: 10%;
+  max-height: 100%;
+  width: 94%;
+  overflow: hidden;
+}
+.btn-primary{
+  background-color: orange;
+  border:0;
+  width:50%
+}
+.price{
+  font-size: 25px;
+  font-weight: 900;
+}
+.rating{
+ align-items: center;
+  width: 15%;
+  color: gold;
+  font-weight: bolder;
+  padding: 10px;
+  border-radius: 10px;
 }
