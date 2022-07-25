@@ -1,6 +1,13 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { setLoginModal } from '../redux/action'
 
 export default function Navbar() {
+    const dispatch=useDispatch()
+    const handleUserProfileClick=()=>{
+        dispatch(setLoginModal())
+    }
     return (
         <div className='container'>
             <nav class="navbar navbar-expand-lg">
@@ -16,10 +23,10 @@ export default function Navbar() {
                                 <a class="nav-link active" aria-current="page" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/men">Men</a>
+                                <Link class="nav-link" to="category/men's clothing">Men</Link>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/women">Women</a>
+                                <Link class="nav-link" to="category/women's clothing">Women</Link>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link disabled">Disabled</a>
@@ -28,10 +35,10 @@ export default function Navbar() {
 
                         </ul>
                         <ul className='navbar-nav' id=''>
-                            <li class="nav-item  d-flex " >
-                                <a class="nav-link ">
+                            <li class="nav-item  d-flex ">
+                                <Link class="nav-link " to='/login' >
                                     <img src='https://cdn-icons-png.flaticon.com/512/149/149071.png' height='30px' width='30px' id='user-image' />
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>

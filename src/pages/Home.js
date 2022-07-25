@@ -10,14 +10,14 @@ export default function Home() {
   const dispatch=useDispatch()
     const isLoading =useSelector(state=>state?.isLoading)
     console.log("isLoading",isLoading)
-    
+
   useEffect(() => {
       dispatch(setLoading(true))
     try {
       fetch("https://fakestoreapi.com/products")
         .then((res) => res.json())
         .then((json) => {
-          //console.log(json);
+          console.log(json);
           setProducts(json);
           dispatch(setLoading(false))
           

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { baseUrl } from '../api/api'
 import LoadingModal from '../componets/LoadingModal'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { setLoading } from '../redux/action'
 
 function ProductDetails() {
@@ -12,16 +14,17 @@ function ProductDetails() {
     const dispatch=useDispatch()
     console.log(details)
 
-    const isLoading =useSelector(state=>state.isLoading)
-    console.log(isLoading)
+    const state =useSelector(state=>state)
+    console.log(state?.isLoading)
     useLayoutEffect(()=>{
         
        try{
         dispatch(setLoading(true))
         fetch(`${baseUrl}products/${id}`)
-        .then(res=>res.json())
-        .then(json=>setDetails(json))
-        dispatch(setLoading(false))
+            .then(res=>res.json())
+            .then(json=>setDetails(json))
+            setTimeout(()=> dispatch(setLoading(false)),700)
+       
        }catch(e){
         dispatch(setLoading(false))
            console.log("Error",e)
@@ -29,11 +32,20 @@ function ProductDetails() {
        
 
     },[id])
+    const notify = () => toast("Wow so easy!");
+    const handleAddToCart=()=>{
+      
+      if(state.isLoggedIn){
+        toast("Wow so easy!");
+      }else{
+        toast("please login first!");
+      }
+    }
 
   return (
-    <div className='container p-md-5 p-lg-5 d-flex justify-content-center'>
+    <div className='product-hero container p-md-5 p-lg-5 d-flex justify-content-center'>
             {
-                isLoading?<LoadingModal/>:
+                state?.isLoading?<LoadingModal/>:
                 <div className='row '>
                 <div className='col-12 col-md-6 col-lg-6'>
                     <img src={details.image} className='img-container' />
@@ -48,7 +60,7 @@ function ProductDetails() {
                    
                   </div>
                   
-                    <button className='btn btn-primary'>Add to cart</button>
+                    <button className='btn btn-primary' onClick={handleAddToCart}>Add to cart</button>
                 </div>
             </div>
                 
