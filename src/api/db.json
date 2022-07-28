@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "john doe",
+      "username": "swan",
+      "password": "1234",
+      "cart": [
+        {
+          "id": 1
+        }
+      ],
+      "address": null,
+      "firstname": "swan@mail.com"
+    },
+    {
+      "firstname": "swan@mail.com",
+      "username": "swan",
+      "cart": [],
+      "address": null,
+      "password": "1234",
+      "id": 2
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import ProductDetails from "./pages/ProductDetails";
 import Category from "./pages/Category";
 import LoginForm from "./pages/LoginForm";
 import { setLoginModal } from "./redux/action";
+import SignUpForm from "./pages/SignUpForm";
 
 function App() {
   const state=useSelector(state=>state)
@@ -25,6 +26,7 @@ function App() {
         <Route exact path="/details/:id" element={<ProductDetails/>}/>
         <Route exact path="/category/:type" element={<Category/>} />
         <Route exact path="/login" element={<LoginForm/>} />
+        <Route exact path="/signup" element={<SignUpForm/>} />
       </Routes>
     </BrowserRouter>
  

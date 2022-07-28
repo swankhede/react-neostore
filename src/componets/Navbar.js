@@ -1,10 +1,14 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setLoginModal } from '../redux/action'
+import { LOGOUT_USER } from '../redux/actionTypes'
+import store from '../redux/store'
 
 export default function Navbar() {
     const dispatch=useDispatch()
+    const state=useSelector(state=>state)
+    console.log("state",state)
     const handleUserProfileClick=()=>{
         dispatch(setLoginModal())
     }
@@ -37,8 +41,29 @@ export default function Navbar() {
                         <ul className='navbar-nav' id=''>
                             <li class="nav-item  d-flex ">
                                 <Link class="nav-link " to='/login' >
-                                    <img src='https://cdn-icons-png.flaticon.com/512/149/149071.png' height='30px' width='30px' id='user-image' />
-                                </Link>
+                                    {state?.isLoggedIn?
+                                            <img 
+                                            src='https://png.pngtree.com/png-vector/20191109/ourlarge/pngtree-avatar-male-people-profile-flat-color-icon-vector-icon-bann-png-image_1968610.jpg'
+                                            height='30px' width='30px' id='user-image'
+                                            onClick={()=>dispatch({type:LOGOUT_USER})}
+                                            />
+                                        :
+                                        <img src='https://cdn-icons-png.flaticon.com/512/149/149071.png' height='30px' width='30px' id='user-image' />
+                                        }
+                                        </Link>
+                            </li>
+                            <li class="nav-item  d-flex ">
+                                <Link class="nav-link cart" to='/login' >
+
+                                    {state?.isLoggedIn?
+                                    <div>
+                                    <i className='fa fa-shopping-cart' />
+                                    <span className='btn btn-light'>{state?.cart?.length}</span>
+                                    </div>
+                                    
+                                    :null}
+
+                                        </Link>
                             </li>
                         </ul>
                     </div>

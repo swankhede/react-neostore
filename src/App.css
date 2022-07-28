@@ -12,6 +12,10 @@
   
   background-color: white;
 }
+#user-image{
+  border-radius: 50%;
+  border: 1px solid grey;
+}
 #user-image:hover{
   border-radius: 100%;
   border: 2px solid orange;
@@ -87,7 +91,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
- 
-  
+}
+.toast-container{
+  background-color: black;
+}
+.cart{
+  align-self: center;
+  align-items: center;
 }

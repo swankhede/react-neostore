@@ -5,13 +5,16 @@ import { baseUrl } from '../api/api'
 import LoadingModal from '../componets/LoadingModal'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { setLoading } from '../redux/action'
+import { addToCart, setLoading } from '../redux/action'
 
 function ProductDetails() {
 
     const {id}=useParams()
     const[details,setDetails]=useState('')
     const dispatch=useDispatch()
+    const user=useSelector(state=>state.user)
+    const {cart}=user
+    console.log("16",cart)
     console.log(details)
 
     const state =useSelector(state=>state)
@@ -32,18 +35,54 @@ function ProductDetails() {
        
 
     },[id])
-    const notify = () => toast("Wow so easy!");
+    console.log("38",{
+      ...user,
+      cart:[
+
+        details
+      ]
+    })
+  
     const handleAddToCart=()=>{
       
       if(state.isLoggedIn){
-        toast("Wow so easy!");
+          fetch(`localhost:3004/users/${user.id}`,{
+            method:'PATCH',
+            body:JSON.stringify({
+              ...user,
+              cart:[details]
+              
+            })
+          })
+          .then(res=>{
+            console.log(res)
+            return res.json()
+          })
+          .then(json=>console.log(json))
+
+        dispatch(addToCart(details))
+        toast("Product")
+
       }else{
         toast("please login first!");
+
       }
     }
 
   return (
     <div className='product-hero container p-md-5 p-lg-5 d-flex justify-content-center'>
+           <ToastContainer
+           theme='dark'
+           position="top-right"
+           autoClose={5000}
+           hideProgressBar={true}
+           newestOnTop={false}
+           closeOnClick
+           rtl={false}
+           pauseOnFocusLoss
+           draggable
+           pauseOnHover
+           />
             {
                 state?.isLoading?<LoadingModal/>:
                 <div className='row '>
