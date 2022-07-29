@@ -12,10 +12,11 @@ function ProductDetails() {
     const {id}=useParams()
     const[details,setDetails]=useState('')
     const dispatch=useDispatch()
-    const user=useSelector(state=>state.user)
-    const {cart}=user
+    const user=useSelector(state=>state?.user)
+    const cart=user?.cart
+    console.log("17")
     console.log("16",cart)
-    console.log(details)
+    console.log("18",user,user?.id)
 
     const state =useSelector(state=>state)
     console.log(state?.isLoading)
@@ -35,33 +36,26 @@ function ProductDetails() {
        
 
     },[id])
-    console.log("38",{
-      ...user,
-      cart:[
-
-        details
-      ]
-    })
+    console.log("39",{...user,cart:user?.cart?.push(details.id)})
+   
   
     const handleAddToCart=()=>{
       
       if(state.isLoggedIn){
-          fetch(`localhost:3004/users/${user.id}`,{
+        console.log("43",`http://localhost:3004/users/${user?.id}`)
+          fetch(`http://localhost:3004/users/${user?.id}`,{
             method:'PATCH',
-            body:JSON.stringify({
-              ...user,
-              cart:[details]
-              
+            body:JSON.stringify({...user,cart:user?.cart?.push(details.id)})
             })
-          })
           .then(res=>{
             console.log(res)
             return res.json()
           })
           .then(json=>console.log(json))
+          .catch(err=>console.log("68",err))
 
         dispatch(addToCart(details))
-        toast("Product")
+        toast("Product added to cart")
 
       }else{
         toast("please login first!");

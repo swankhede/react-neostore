@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { baseUrl } from "../api/api";
 import { setLoginModal } from "../redux/action";
 
@@ -8,6 +8,7 @@ function SignUpForm(props) {
     const{isVisible,handleClose}=props
     const [username,setUserName]=useState()
     const [firstName,setFirstName]=useState()
+    const navigate=useNavigate()
     const [pass,setPass]=useState()
     console.log("line 12",firstName,username,pass)
     const dispatch=useDispatch()
@@ -28,8 +29,8 @@ function SignUpForm(props) {
                 password: pass
             })
         })
-            .then(res=>console.log(res))
-            .then(json=>console.log(json))
+            .then(res=>res.json())
+            .then(json=>navigate('/login'))
     }
     
   return (

@@ -1,14 +1,15 @@
-import { LOGOUT_USER, SAVE_USER_DATA, SET_LOADING, SET_LOGIN_MODAL } from "./actionTypes"
+import { ADD_TO_CART, LOGOUT_USER, SAVE_USER_DATA, SET_LOADING, SET_LOGIN_MODAL } from "./actionTypes"
 
 const initialState={
     isLoading:false,
     isLoggedIn:false,
     isLoginModal:false,
     products:[],
-    user:[]
+    user:null,
+    cart:[]
 }
 export const mainReducer=(state=initialState,action)=>{
-    console.log(action.type)
+    console.log(action.type,action.payload)
     switch(action.type){
         case SET_LOADING:return{
                 ...state,
@@ -25,6 +26,11 @@ export const mainReducer=(state=initialState,action)=>{
         }
         case LOGOUT_USER:return{
             ...initialState
+        }
+        case ADD_TO_CART:return{
+            ...state,
+            cart:[...state?.cart,action.payload]
+        
         }
     
     }

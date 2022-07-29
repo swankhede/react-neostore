@@ -25,7 +25,7 @@ function LoginForm(props) {
               const data=json.filter(d=>d.username==username)
               console.log(data)
               if(data.length==1){
-                dispatch(saveUserData(data))
+                dispatch(saveUserData(data[0]))
                 toast("Login successfully!")
                 navigate('/')
               }else{

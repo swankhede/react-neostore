@@ -24,7 +24,7 @@ export default function Navbar() {
                             
                         <ul class="navbar-nav d-flex align-items-center">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                                <Link class="nav-link active" aria-current="page" to="/">Home</Link>
                             </li>
                             <li class="nav-item">
                                 <Link class="nav-link" to="category/men's clothing">Men</Link>
@@ -39,6 +39,19 @@ export default function Navbar() {
 
                         </ul>
                         <ul className='navbar-nav' id=''>
+                        <li class="nav-item  d-flex ">
+                                <Link class="nav-link cart" to='/login' >
+
+                                    {state?.isLoggedIn?
+                                    <div>
+                                    <i className='fa fa-shopping-cart' />
+                                    <span class="badge rounded-pill text-bg-danger">{state?.cart?.length}</span>
+                                    </div>
+                                    
+                                    :null}
+
+                                        </Link>
+                            </li>
                             <li class="nav-item  d-flex ">
                                 <Link class="nav-link " to='/login' >
                                     {state?.isLoggedIn?
@@ -52,19 +65,7 @@ export default function Navbar() {
                                         }
                                         </Link>
                             </li>
-                            <li class="nav-item  d-flex ">
-                                <Link class="nav-link cart" to='/login' >
-
-                                    {state?.isLoggedIn?
-                                    <div>
-                                    <i className='fa fa-shopping-cart' />
-                                    <span className='btn btn-light'>{state?.cart?.length}</span>
-                                    </div>
-                                    
-                                    :null}
-
-                                        </Link>
-                            </li>
+                           
                         </ul>
                     </div>
                 </div>
