@@ -1,37 +1,49 @@
-import { ADD_TO_CART, LOGOUT_USER, SAVE_USER_DATA, SET_LOADING, SET_LOGIN_MODAL } from "./actionTypes"
+import { ADD_TO_CART, DELETE_PRODUCT, LOGOUT_USER, SAVE_USER_DATA, SET_CART_MODAL, SET_LOADING, SET_LOGIN_MODAL } from "./actionTypes"
 
-const initialState={
-    isLoading:false,
-    isLoggedIn:false,
-    isLoginModal:false,
-    products:[],
-    user:null,
-    cart:[]
+const initialState = {
+    isLoading: false,
+    isLoggedIn: false,
+    isLoginModal: false,
+    isCartModal: false,
+    products: [],
+    user: null,
+    cart: null
 }
-export const mainReducer=(state=initialState,action)=>{
-    console.log(action.type,action.payload)
-    switch(action.type){
-        case SET_LOADING:return{
-                ...state,
-                isLoading:action.payload
-        }
-        case SET_LOGIN_MODAL:return{
+export const mainReducer = (state = initialState, action) => {
+    console.log("line 13", action.type, action.payload)
+    switch (action.type) {
+        case SET_LOADING: return {
             ...state,
-            isLoginModal:!state.isLoginModal
+            isLoading: action.payload
         }
-        case SAVE_USER_DATA :return{
+        case SET_CART_MODAL: return {
             ...state,
-            isLoggedIn:true,
-            user:action.payload
+            isCartModal: !state.isCartModal
         }
-        case LOGOUT_USER:return{
+        case SAVE_USER_DATA: return {
+            ...state,
+            isLoggedIn: true,
+            user: action.payload,
+
+        }
+        case LOGOUT_USER: return {
             ...initialState
         }
-        case ADD_TO_CART:return{
+        case ADD_TO_CART: return {
             ...state,
-            cart:[...state?.cart,action.payload]
-        
+            cart: action.payload
+
         }
-    
+        case DELETE_PRODUCT:
+            const newCart = state.cart.filter(prod => prod.id != action.payload)
+            console.log("newCart", newCart)
+            return {
+                ...state,
+                cart: newCart
+            }
+
+
+        default: return state
+
     }
 }

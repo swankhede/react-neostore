@@ -1,16 +1,21 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { setLoginModal } from '../redux/action'
+import { setCartModal, setLoginModal } from '../redux/action'
 import { LOGOUT_USER } from '../redux/actionTypes'
 import store from '../redux/store'
 
 export default function Navbar() {
     const dispatch=useDispatch()
     const state=useSelector(state=>state)
-    console.log("state",state)
+    
+    
+    console.log("line 12 navbar",state)
     const handleUserProfileClick=()=>{
         dispatch(setLoginModal())
+    }
+    const handleCart=()=>{
+        dispatch(setCartModal())
     }
     return (
         <div className='container'>
@@ -32,25 +37,25 @@ export default function Navbar() {
                             <li class="nav-item">
                                 <Link class="nav-link" to="category/women's clothing">Women</Link>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled">Disabled</a>
-                            </li>
+                            
 
 
                         </ul>
                         <ul className='navbar-nav' id=''>
                         <li class="nav-item  d-flex ">
-                                <Link class="nav-link cart" to='/login' >
+                                <a class="nav-link cart"  >
 
-                                    {state?.isLoggedIn?
-                                    <div>
+                                    {
+                                    state?.isLoggedIn?
+                                    <div onClick={handleCart}>
                                     <i className='fa fa-shopping-cart' />
                                     <span class="badge rounded-pill text-bg-danger">{state?.cart?.length}</span>
                                     </div>
                                     
-                                    :null}
+                                    :null
+                                    }
 
-                                        </Link>
+                                        </a>
                             </li>
                             <li class="nav-item  d-flex ">
                                 <Link class="nav-link " to='/login' >

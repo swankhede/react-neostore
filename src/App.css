@@ -1,36 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap");
 
-*{
-  font-family: 'Kumbh Sans', sans-serif;
-
-  
+* {
+  font-family: "Kumbh Sans", sans-serif;
 }
 .App {
   text-align: center;
 }
-.navbar{
-  
+.navbar {
   background-color: white;
 }
-#user-image{
+#user-image {
   border-radius: 50%;
   border: 1px solid grey;
 }
-#user-image:hover{
+#user-image:hover {
   border-radius: 100%;
   border: 2px solid orange;
-
 }
-.active{
+.active {
   color: orange !important;
   font-weight: 700;
   border-bottom: 2px solid orange;
 }
-.nav-item .nav-link:hover{
-  color:orange !important;
+.nav-item .nav-link:hover {
+  color: orange !important;
 }
 
-.product-card{
+.product-card {
   height: 300px;
   background-color: white;
   padding: 10px;
@@ -38,52 +34,51 @@
   border: 1px solid rgb(207, 206, 206);
   flex-direction: column;
   justify-content: space-between;
-  
 }
 
-.product-img{
+.product-img {
   height: 50%;
   display: flex;
   justify-content: center;
-
 }
-.product-img img{
+.product-img img {
   height: 100%;
   padding: 10px;
   max-width: 100%;
 }
-.product-card:hover,.img-container:hover{
+.product-card:hover,
+.img-container:hover {
   transform: scale(1.2);
   transition: 1s;
 }
-.product-hero{
+.product-hero {
   min-height: 40vh;
 }
-.img-container{
+.img-container {
   display: flex;
   padding: 10%;
   max-height: 100%;
   width: 94%;
   overflow: hidden;
 }
-.btn-primary{
+.btn-primary {
   background-color: orange;
-  border:0;
-  width:50%
+  border: 0;
+  width: 50%;
 }
-.price{
+.price {
   font-size: 25px;
   font-weight: 900;
 }
-.rating{
- align-items: center;
+.rating {
+  align-items: center;
   width: 15%;
   color: gold;
   font-weight: bolder;
   padding: 10px;
   border-radius: 10px;
 }
-.hide{
+.hide {
   display: none;
 }
 .login-container {
@@ -92,16 +87,59 @@
   justify-content: center;
   align-items: center;
 }
-.toast-container{
+.toast-container {
   background-color: black;
 }
-.cart{
+.cart {
   align-self: center;
   align-items: center;
 }
-.rounded-pill{
-  z-index:1;
+.rounded-pill {
+  z-index: 1;
   position: relative;
-  left:-10px;
-  bottom:10px;
+  left: -10px;
+  bottom: 10px;
+}
+.cart-modal {
+  display: flex;
+  z-index: 99;
+  width: 25%;
+
+  min-height: 100%;
+
+  left: 75%;
+  position: absolute;
+
+  border: none;
+  background-color: rgb(241, 239, 239);
+}
+.counter-btn {
+  width: 50% !important;
+  font-size: 25px;
+  background-color: whitesmoke;
+  color: orange;
+  font-weight: bold;
+}
+
+.quantity {
+  width: 20px;
+  text-align: center;
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.delete-btn {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .cart-modal {
+    height: 125vh;
+    width: 100%;
+    left: 0;
+  }
 }
